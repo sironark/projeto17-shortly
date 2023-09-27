@@ -1,10 +1,15 @@
 import Joi from "joi";
 
-/*
-export const postCustomersSchema = Joi.object({
+
+export const SignupSchema = Joi.object({
         name: Joi.string().required().min(1),
-        phone: Joi.string().regex(/^\d+$/).required().max(11).min(10),
-        cpf: Joi.string().length(11).required().regex(/^\d+$/),
-        birthday: Joi.date().max('now').iso()
+        email: Joi.string().required().min(1).email(),
+        password: Joi.string().required(),
+        confirmPassword: Joi.string().required().valid(Joi.ref('password'))
     })
-*/
+
+    export const SiginSchema = Joi.object({
+        email: Joi.string().required().min(1).email(),
+        password: Joi.string().required().min(1)        
+    })
+

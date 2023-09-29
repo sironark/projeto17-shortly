@@ -1,13 +1,13 @@
 
 import { Router } from "express";
-import { getRanking, getShortUrls, getUrlsById } from "../controllers/urls.controller.js";
+import { getOpenShortUrls, getRanking, getUrlsById } from "../controllers/urls.controller.js";
 
 
 const urlsRouter = Router();
 
 
 urlsRouter.get("/urls/:id", getUrlsById);
-urlsRouter.get("/urls/open/:shortUrl", getShortUrls);
+urlsRouter.get("/urls/open/:shortUrl", getOpenShortUrls);
 urlsRouter.get("/ranking", getRanking);
 
 

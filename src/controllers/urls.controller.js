@@ -56,16 +56,13 @@ export async function getRanking(req,res){
             GROUP BY "userId", users.name
             ORDER BY "visitCount" DESC
             ; `)
-          let response = [...access.rows]
-
-         
-          console.log(access.rows)
-
+          let response = [...access.rows];
+          if (response.length < 10) return res.status(200).send(response);
           
-      
+          if (response.length > 10) {
+            return res.status(200).send(response.slice(0,9));
+          }
     
-    res.status(200).send(response);
-
     } catch (err) {
       res.status(500).send(err.message);
     }

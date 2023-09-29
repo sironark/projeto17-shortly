@@ -40,8 +40,35 @@ export async function getOpenShortUrls(req,res){
 
 export async function getRanking(req,res){
 
+ 
+  
+  
   try {
-      res.status(200).send();
+      const search = await db.query(`SELECT users.id AS "user", users.name ,
+      links.id, links."shortUrl", links.url, links."accessCount" AS "visitCount"
+      FROM users 
+      JOIN links ON links."userId" = users.id ;`)
+    
+          const users = await db.query(`SELECT name, id FROM users;`);
+          
+          const access = await db.query(`SELECT links."userId" AS id,
+            users.name,
+            COUNT(links.id) AS "linksCount", 
+            SUM(links."accessCount") AS "visitCount"
+            FROM links
+            JOIN users ON users.id = links."userId"
+            GROUP BY "userId", users.name
+            ORDER BY "visitCount" DESC
+            ; `)
+          let response = [...access.rows]
+
+         
+          console.log(access.rows)
+
+          
+      
+    
+    res.status(200).send(response);
 
     } catch (err) {
       res.status(500).send(err.message);

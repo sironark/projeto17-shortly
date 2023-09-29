@@ -63,8 +63,8 @@ export async function postUrls(req,res){
         links.id, links."shortUrl", links.url, links."accessCount" AS "visitCount"
         FROM users 
         JOIN links ON links."userId" = users.id 
-        WHERE users.id = 2;
-        `)
+        WHERE users.id = $1;
+        `, [userId])
       
       const response = {
         id: search.rows[0].user,

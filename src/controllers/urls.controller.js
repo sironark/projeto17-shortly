@@ -23,9 +23,9 @@ export async function getOpenShortUrls(req,res){
       const searchUrl = await db.query(`SELECT links.url, links."accessCount"
       FROM links
       WHERE "shortUrl" = $1;`,[shortUrl])
+      if (!searchUrl.rowCount) return res.status(404).send();
 
       const attAccess = Number(searchUrl.rows[0].accessCount) + 1;
-      
       await db.query(`UPDATE links 
       SET "accessCount" = $1
       WHERE "shortUrl" = $2`,[attAccess, shortUrl])
@@ -60,7 +60,7 @@ export async function getRanking(req,res){
           if (response.length < 10) return res.status(200).send(response);
           
           if (response.length > 10) {
-            return res.status(200).send(response.slice(0,9));
+            return res.status(200).send(response.slice(0,10));
           }
     
     } catch (err) {

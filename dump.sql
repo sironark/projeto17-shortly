@@ -31,7 +31,7 @@ CREATE TABLE public.links (
     "userId" integer NOT NULL,
     "dateCriation" timestamp without time zone DEFAULT now() NOT NULL,
     "accessCount" bigint DEFAULT 0 NOT NULL,
-    "createdSt" timestamp without time zone DEFAULT now() NOT NULL
+    "createdAt" timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
@@ -63,7 +63,7 @@ CREATE TABLE public.sessions (
     id integer NOT NULL,
     "userId" integer NOT NULL,
     token character varying(40) NOT NULL,
-    "createdSt" timestamp without time zone DEFAULT now() NOT NULL
+    "createdAt" timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
@@ -96,7 +96,7 @@ CREATE TABLE public.users (
     name text NOT NULL,
     email text NOT NULL,
     password text NOT NULL,
-    "createdSt" timestamp without time zone DEFAULT now() NOT NULL
+    "createdAt" timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
@@ -145,47 +145,39 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: links; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.links VALUES (3, 'https://www.globo.com.br', 'tB-_AL', 1, '2023-09-29 16:35:56.286726', 0, '2023-09-29 16:35:56.286726');
-INSERT INTO public.links VALUES (1, 'https://www.render.com', 'NbfPWL', 1, '2023-09-29 16:35:34.656913', 1, '2023-09-29 16:35:34.656913');
-INSERT INTO public.links VALUES (4, 'https://www.driven.com.br', 'vH_NEJ', 2, '2023-09-29 16:36:24.895005', 4, '2023-09-29 16:36:24.895005');
 
 
 --
 -- Data for Name: sessions; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.sessions VALUES (1, 1, 'c7bec755-0b08-4532-a5c8-0d824a3b7c4e', '2023-09-29 16:34:21.803642');
-INSERT INTO public.sessions VALUES (2, 2, 'b3263175-f74d-47ce-8687-988cd3954e94', '2023-09-29 16:34:29.830862');
 
 
 --
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.users VALUES (1, 'gabriel', 'gabriel@driven.com.br', '$2b$10$m/W0QTj/2U5WWqj2q2xbIOKLBca63oXgmcYwdnV8Hvn45LK2Siu8W', '2023-09-29 16:33:28.334353');
-INSERT INTO public.users VALUES (2, 'gleisi', 'gleisi@driven.com.br', '$2b$10$ThPkaz4jRDr0eSmCubSCvuCq8n25PLiKx2eByEz.HCpomTY1UzxsG', '2023-09-29 16:33:43.762522');
-INSERT INTO public.users VALUES (3, 'João', 'joao@driven.com.br', '$2b$10$.f6Kc5.nj01a/1D1Bl9Cne3mnrGytVWWQW30cKyFdh9BCZh/DjCwa', '2023-09-29 16:34:15.922134');
 
 
 --
 -- Name: links_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.links_id_seq', 4, true);
+SELECT pg_catalog.setval('public.links_id_seq', 1, false);
 
 
 --
 -- Name: sessions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.sessions_id_seq', 2, true);
+SELECT pg_catalog.setval('public.sessions_id_seq', 1, false);
 
 
 --
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 3, true);
+SELECT pg_catalog.setval('public.users_id_seq', 1, false);
 
 
 --

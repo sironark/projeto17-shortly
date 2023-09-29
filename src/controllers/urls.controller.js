@@ -27,7 +27,8 @@ export async function getOpenShortUrls(req,res){
       const attAccess = Number(searchUrl.rows[0].accessCount) + 1;
       
       await db.query(`UPDATE links 
-      SET "accessCount" = $1`,[attAccess])
+      SET "accessCount" = $1
+      WHERE "shortUrl" = $2`,[attAccess, shortUrl])
 
       res.redirect(searchUrl.rows[0].url)
 

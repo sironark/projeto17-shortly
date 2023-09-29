@@ -30,7 +30,8 @@ CREATE TABLE public.links (
     "shortUrl" character varying(20) NOT NULL,
     "userId" integer NOT NULL,
     "dateCriation" timestamp without time zone DEFAULT now() NOT NULL,
-    "accessCount" bigint DEFAULT 0 NOT NULL
+    "accessCount" bigint DEFAULT 0 NOT NULL,
+    "createdSt" timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
@@ -61,7 +62,8 @@ ALTER SEQUENCE public.links_id_seq OWNED BY public.links.id;
 CREATE TABLE public.sessions (
     id integer NOT NULL,
     "userId" integer NOT NULL,
-    token character varying(40) NOT NULL
+    token character varying(40) NOT NULL,
+    "createdSt" timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
@@ -94,7 +96,7 @@ CREATE TABLE public.users (
     name text NOT NULL,
     email text NOT NULL,
     password text NOT NULL,
-    "dateCriation" timestamp without time zone DEFAULT now() NOT NULL
+    "createdSt" timestamp without time zone DEFAULT now() NOT NULL
 );
 
 
@@ -143,49 +145,47 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 -- Data for Name: links; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.links VALUES (2, 'https://www.driven.com', '67n0g-', 2, '2023-09-29 12:26:39.606366', 5);
-INSERT INTO public.links VALUES (1, 'https://www.globo.com', 'IcnaNd', 2, '2023-09-29 11:53:01.450267', 10);
-INSERT INTO public.links VALUES (3, 'https://www.google.com', '7_4H3S', 2, '2023-09-29 12:28:21.543038', 8);
-INSERT INTO public.links VALUES (5, 'https://www.render.com', 'u_s3-X', 3, '2023-09-29 12:29:48.532126', 27);
+INSERT INTO public.links VALUES (3, 'https://www.globo.com.br', 'tB-_AL', 1, '2023-09-29 16:35:56.286726', 0, '2023-09-29 16:35:56.286726');
+INSERT INTO public.links VALUES (1, 'https://www.render.com', 'NbfPWL', 1, '2023-09-29 16:35:34.656913', 1, '2023-09-29 16:35:34.656913');
+INSERT INTO public.links VALUES (4, 'https://www.driven.com.br', 'vH_NEJ', 2, '2023-09-29 16:36:24.895005', 4, '2023-09-29 16:36:24.895005');
 
 
 --
 -- Data for Name: sessions; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.sessions VALUES (2, 2, '57a2b5cc-50dc-498d-8303-d5e07a0d8734');
-INSERT INTO public.sessions VALUES (5, 3, '35622b2e-9d49-42be-b771-860edf4bad98');
+INSERT INTO public.sessions VALUES (1, 1, 'c7bec755-0b08-4532-a5c8-0d824a3b7c4e', '2023-09-29 16:34:21.803642');
+INSERT INTO public.sessions VALUES (2, 2, 'b3263175-f74d-47ce-8687-988cd3954e94', '2023-09-29 16:34:29.830862');
 
 
 --
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-INSERT INTO public.users VALUES (2, 'João', 'joao@driven.com.br', '$2b$10$9taqxDhVOyAIylRdZDvc5.uhLknW1tlfpR1pB94QsPcH65yB23mLi', '2023-09-27 11:25:04.382458');
-INSERT INTO public.users VALUES (3, 'Gabriel', 'gabriel@driven.com.br', '$2b$10$w4nCblIz/GeMQfDTlj2tOOCXcP0hxPEP7dw7nqhGnM140w9bWYepu', '2023-09-27 11:25:51.748779');
-INSERT INTO public.users VALUES (4, 'Gleisi', 'gleisi@driven.com.br', '$2b$10$7Y6ONMlT5Dv5jM3jORndE.0pnTCFvOKUT1VpAWwCgtaqNsEn/hWz.', '2023-09-27 11:30:34.134048');
-INSERT INTO public.users VALUES (5, 'Talita', 'talita@driven.com.br', '$2b$10$5727b.n38wRYzXDMTlunWOm2wceDxXhuRmCV/m2qD61C5buHZxoqu', '2023-09-29 11:37:54.34212');
+INSERT INTO public.users VALUES (1, 'gabriel', 'gabriel@driven.com.br', '$2b$10$m/W0QTj/2U5WWqj2q2xbIOKLBca63oXgmcYwdnV8Hvn45LK2Siu8W', '2023-09-29 16:33:28.334353');
+INSERT INTO public.users VALUES (2, 'gleisi', 'gleisi@driven.com.br', '$2b$10$ThPkaz4jRDr0eSmCubSCvuCq8n25PLiKx2eByEz.HCpomTY1UzxsG', '2023-09-29 16:33:43.762522');
+INSERT INTO public.users VALUES (3, 'João', 'joao@driven.com.br', '$2b$10$.f6Kc5.nj01a/1D1Bl9Cne3mnrGytVWWQW30cKyFdh9BCZh/DjCwa', '2023-09-29 16:34:15.922134');
 
 
 --
 -- Name: links_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.links_id_seq', 5, true);
+SELECT pg_catalog.setval('public.links_id_seq', 4, true);
 
 
 --
 -- Name: sessions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.sessions_id_seq', 5, true);
+SELECT pg_catalog.setval('public.sessions_id_seq', 2, true);
 
 
 --
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 5, true);
+SELECT pg_catalog.setval('public.users_id_seq', 3, true);
 
 
 --

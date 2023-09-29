@@ -38,11 +38,7 @@ export async function getOpenShortUrls(req,res){
 }
 
 
-export async function getRanking(req,res){
-
- 
-  
-  
+export async function getRanking(req,res){ 
   try {
       const search = await db.query(`SELECT users.id AS "user", users.name ,
       links.id, links."shortUrl", links.url, links."accessCount" AS "visitCount"
